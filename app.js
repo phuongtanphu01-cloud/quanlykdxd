@@ -1,4 +1,4 @@
-const API = "https://docs.google.com/spreadsheets/d/1Q9nWtGq5B1ogiwaHBh5q6XkImAGZ3ey75RPkilBtPw8/edit?gid=0#gid=0";
+const API = "https://script.google.com/macros/s/AKfycbxDXbAUrpMfe7HQChBu6frXwZgHnDs85Dnx8Cs-qv6-akXoE2Ei3rCrur0XMn8xWsSy4g/exec";
 
 let data = [];
 
