@@ -1,4 +1,4 @@
-const API = "1Q9nWtGq5B1ogiwaHBh5q6XkImAGZ3ey75RPkilBtPw8";
+const API = "https://docs.google.com/spreadsheets/d/1Q9nWtGq5B1ogiwaHBh5q6XkImAGZ3ey75RPkilBtPw8/edit?gid=0#gid=0";
 
 let data = [];
 
