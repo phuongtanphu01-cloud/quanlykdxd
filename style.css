@@ -31,3 +31,22 @@ input {
   font-size: 16px;
   color: #333;
 }
+
+.suggestions {
+  background: white;
+  margin: 0 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions div {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background: #f0f0f0;
+}
