@@ -10,10 +10,12 @@ fetch(API)
 });
 
 function removeVietnameseTones(str) {
-  return str.normalize("NFD")
+  return String(str)
+    .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/đ/g, "d")
-    .replace(/Đ/g, "D");
+    .replace(/Đ/g, "D")
+    .toLowerCase();
 }
 
 function render(arr){
@@ -38,27 +40,30 @@ function render(arr){
 }
 
 function getSuggestions(keyword){
-    keyword = keyword.toLowerCase();
+    keyword = removeVietnameseTones(keyword);
 
     let results = data.filter(e =>
-        removeVietnameseTones(String(e.TENHKD || "").toLowerCase()).includes(keyword) ||
-        removeVietnameseTones(String(e.MA_HKD || "").toLowerCase()).includes(keyword) ||
-        removeVietnameseTones(String(e.DIACHI || "").toLowerCase()).includes(keyword)
+        removeVietnameseTones(e.TENHKD).includes(keyword) ||
+        removeVietnameseTones(e.MS_HKD).includes(keyword) ||
+        removeVietnameseTones(e.DIACHI).includes(keyword)
     );
 
-    return results.slice(0, 5); // chỉ lấy 5 gợi ý
+    return results.slice(0, 5);
 }
 
 function selectSuggestion(value){
     document.getElementById("search").value = value;
     document.getElementById("suggestions").innerHTML = "";
 
+    let keyword = removeVietnameseTones(value);
+
     let filtered = data.filter(e =>
-        removeVietnameseTones(String(e.TENHKD || "").toLowerCase()).includes(value.toLowerCase())
+        removeVietnameseTones(e.TENHKD || "").includes(keyword)
     );
 
     render(filtered);
 }
+
 function showSuggestions(list){
     let html = "";
 
@@ -72,6 +77,19 @@ function showSuggestions(list){
 
     document.getElementById("suggestions").innerHTML = html;
 }
+
+function highlight(text, keyword){
+    let t = removeVietnameseTones(text);
+    let k = removeVietnameseTones(keyword);
+
+    let index = t.indexOf(k);
+    if(index === -1) return text;
+
+    return text.substring(0, index) +
+           "<mark>" + text.substring(index, index + keyword.length) + "</mark>" +
+           text.substring(index + keyword.length);
+}
+
 document.getElementById("search").addEventListener("input", function(){
     let key = this.value.toLowerCase();
 
@@ -86,9 +104,9 @@ document.getElementById("search").addEventListener("input", function(){
     let keyword = removeVietnameseTones(key);
     
     let filtered = data.filter(e =>
-        removeVietnameseTones(e.TENHKD).includes(keyword) ||
-        removeVietnameseTones(e.MS_HKD).includes(keyword) ||
-        removeVietnameseTones(e.DIACHI).includes(keyword)
+    removeVietnameseTones(e.TENHKD || "").includes(keyword) ||
+    removeVietnameseTones(e.MS_HKD || "").includes(keyword) ||
+    removeVietnameseTones(e.DIACHI || "").includes(keyword)
     );
 
     render(filtered);
