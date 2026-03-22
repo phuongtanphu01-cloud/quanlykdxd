@@ -83,11 +83,12 @@ document.getElementById("search").addEventListener("input", function(){
 
     let suggestions = getSuggestions(key);
     showSuggestions(suggestions);
-
+    let keyword = removeVietnameseTones(key);
+    
     let filtered = data.filter(e =>
-        removeVietnameseTones(String(e.TENHKD || "").toLowerCase()).includes(key) ||
-        removeVietnameseTones(String(e.MA_HKD || "").toLowerCase()).includes(key) ||
-        removeVietnameseTones(String(e.DIACHI || "").toLowerCase()).includes(key)
+        removeVietnameseTones(e.TENHKD).includes(keyword) ||
+        removeVietnameseTones(e.MS_HKD).includes(keyword) ||
+        removeVietnameseTones(e.DIACHI).includes(keyword)
     );
 
     render(filtered);
