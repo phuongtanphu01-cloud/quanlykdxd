@@ -92,5 +92,3 @@ document.getElementById("search").addEventListener("input", function(){
 
     render(filtered);
 });
-    render(filtered);
-});
