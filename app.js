@@ -13,19 +13,30 @@ fetch(API)
 
     render(dataHKD);
 });
+function setActiveTab(tab){
+    document.getElementById("btnHKD").classList.remove("active");
+    document.getElementById("btnXD").classList.remove("active");
 
+    if(tab === "hkd"){
+        document.getElementById("btnHKD").classList.add("active");
+        document.getElementById("title").innerText = "📋 Tra cứu Hộ Kinh Doanh";
+    } else {
+        document.getElementById("btnXD").classList.add("active");
+        document.getElementById("title").innerText = "🏗️ Công trình xây dựng";
+    }
+}
 // ================= TAB =================
 function showHKD(){
     currentTab = "hkd";
+    setActiveTab("hkd");
     document.getElementById("search").value = "";
-    document.getElementById("suggestions").innerHTML = "";
     render(dataHKD);
 }
 
 function showXD(){
     currentTab = "xd";
+    setActiveTab("xd");
     document.getElementById("search").value = "";
-    document.getElementById("suggestions").innerHTML = "";
     renderXD(dataXD);
 }
 
