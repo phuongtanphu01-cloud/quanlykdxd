@@ -50,3 +50,13 @@ input {
 .suggestions div:hover {
   background: #f0f0f0;
 }
+.map-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 6px 10px;
+  background: #4caf50;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+}
