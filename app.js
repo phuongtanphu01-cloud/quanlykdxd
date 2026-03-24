@@ -58,7 +58,7 @@ function render(arr){
         html += `
         <div class="card">
             <b>${String(e.TENHKD || "")}</b><br>
-            📍 ${String(e.DIACHI || "")}<br>
+            📍 ${String(e.DIACHI || "")}<br><a href="https://www.google.com/maps/search/${encodeURIComponent(e.DIACHI || "")}" target="_blank">📍 Xem trên Google Maps</a><br>
             📞 ${String(e.DIENTHOAI || "")}<br>
             🏢 ${String(e.NNKD || "")}<br>
             🆔 ${String(e.MS_HKD || "")}
@@ -79,7 +79,7 @@ function renderXD(arr){
         html += `
         <div class="card">
             <b>🏗️ ${String(e.TENCONGTRINH || "")}</b><br>
-            📍 ${String(e.DIACHI || "")}<br>
+            📍 ${String(e.DIACHI || "")}<br><a href="https://www.google.com/maps/search/${encodeURIComponent(e.DIACHI || "")}" target="_blank">📍 Xem trên Google Maps</a><br>
             📄 Số GP: ${String(e.SOGIAYPHEP || "")}<br>
             📅 Ngày cấp: ${formatDate(e.NGAYCAP)}<br>
             🆔 ${String(e.MA_HOSO || "")}<br>
