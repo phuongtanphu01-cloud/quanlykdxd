@@ -39,15 +39,20 @@
   <h2 id="title">📋 Tra cứu Hộ Kinh Doanh</h2>
 </header>
 
-<input type="text" id="search" placeholder="🔍 Nhập từ khóa...">
-
 <div class="tabbar">
   <button id="btnHKD" class="active" onclick="showHKD()">🏪 Hộ kinh doanh</button>
 </div>
 <div class="tabbar">
   <button id="btnXD" onclick="showXD()">🏗️ Giấy phép Xây dựng</button>
 </div>
+  
+<input type="text" id="search" placeholder="🔍 Nhập từ khóa...">
 
+<a class="map-btn" 
+   href="https://www.google.com/maps/search/${encodeURIComponent(e.DIACHI || "")}" 
+   target="_blank">
+📍 Xem bản đồ
+</a>
 <div id="suggestions" class="suggestions"></div>
 
 <div id="list"></div>
