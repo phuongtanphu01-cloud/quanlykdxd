@@ -9,6 +9,50 @@ fetch(API)
     render(data);
 });
 
+let dataHKD = [];
+let dataXD = [];
+let currentTab = "hkd";
+
+fetch(API)
+.then(res => res.json())
+.then(res => {
+    dataHKD = res.hkd;
+    dataXD = res.xaydung;
+
+    render(dataHKD);
+});
+function showHKD(){
+    currentTab = "hkd";
+    render(dataHKD);
+}
+
+function showXD(){
+    currentTab = "xd";
+    renderXD(dataXD);
+}
+
+function renderXD(arr){
+    let html = "";
+
+    if(arr.length === 0){
+        html = "<p style='text-align:center'>Không có dữ liệu</p>";
+    }
+
+    arr.forEach(e => {
+        html += `
+        <div class="card">
+            <b>🏗️ ${String(e.TENCONGTRINH || "")}</b><br>
+            📍 ${String(e.DIACHI || "")}<br>
+            📄 Số GP: ${String(e.SOGIAYPHEP || "")}<br>
+            📅 Ngày cấp: ${formatDate(e.NGAYCAP)}<br>
+            🆔 Mã hồ sơ: ${String(e.MA_HOSO || "")}<br>
+            📝 ${String(e.GHICHU || "")}
+        </div>`;
+    });
+
+    document.getElementById("list").innerHTML = html;
+}
+
 function removeVietnameseTones(str) {
   return String(str)
     .normalize("NFD")
@@ -42,7 +86,7 @@ function render(arr){
 function getSuggestions(keyword){
     keyword = removeVietnameseTones(keyword);
 
-    let results = data.filter(e =>
+    let results = dataHKD.filter(e =>
         removeVietnameseTones(e.TENHKD).includes(keyword) ||
         removeVietnameseTones(e.MS_HKD).includes(keyword) ||
         removeVietnameseTones(e.DIACHI).includes(keyword)
@@ -57,7 +101,7 @@ function selectSuggestion(value){
 
     let keyword = removeVietnameseTones(value);
 
-    let filtered = data.filter(e =>
+    let filtered = dataHKD.filter(e =>
         removeVietnameseTones(e.TENHKD || "").includes(keyword)
     );
 
@@ -89,25 +133,26 @@ function highlight(text, keyword){
            "<mark>" + text.substring(index, index + keyword.length) + "</mark>" +
            text.substring(index + keyword.length);
 }
-
+   
 document.getElementById("search").addEventListener("input", function(){
-    let key = this.value.toLowerCase();
+    let keyword = removeVietnameseTones(this.value);
 
-    if(key.length === 0){
-        document.getElementById("suggestions").innerHTML = "";
-        render(data);
-        return;
+    if(currentTab === "xd"){
+        let filtered = dataXD.filter(e =>
+            removeVietnameseTones(e.TENCONGTRINH || "").includes(keyword) ||
+            removeVietnameseTones(e.MA_HOSO || "").includes(keyword) ||
+            removeVietnameseTones(e.DIACHI || "").includes(keyword) ||
+            removeVietnameseTones(e.SOGIAYPHEP || "").includes(keyword)
+        );
+        renderXD(filtered);
+    } else {
+        let filtered = dataHKD.filter(e =>
+            removeVietnameseTones(e.TENHKD || "").includes(keyword) ||
+            removeVietnameseTones(e.MS_HKD || "").includes(keyword) ||
+            removeVietnameseTones(e.DIACHI || "").includes(keyword)
+        );
+        render(filtered);
     }
-
-    let suggestions = getSuggestions(key);
-    showSuggestions(suggestions);
-    let keyword = removeVietnameseTones(key);
-    
-    let filtered = data.filter(e =>
-    removeVietnameseTones(e.TENHKD || "").includes(keyword) ||
-    removeVietnameseTones(e.MS_HKD || "").includes(keyword) ||
-    removeVietnameseTones(e.DIACHI || "").includes(keyword)
-    );
-
+});
     render(filtered);
 });
