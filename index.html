@@ -4,20 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Tra cứu HKD</title>
+<title>Tra cứu thông tin</title>
 
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
+
+<style>
+.tabbar {
+  display: flex;
+  margin: 10px;
+  gap: 10px;
+}
+
+.tabbar button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ddd;
+  font-weight: bold;
+}
+
+.tabbar button.active {
+  background: #2196f3;
+  color: white;
+}
+</style>
 
 </head>
 
 <body>
 
 <header>
-  <h2>📋 Tra cứu Hộ Kinh Doanh</h2>
+  <h2 id="title">📋 Tra cứu Hộ Kinh Doanh</h2>
 </header>
 
-<input type="text" id="search" placeholder="🔍 Nhập tên, mã HKD, địa chỉ...">
+<input type="text" id="search" placeholder="🔍 Nhập từ khóa...">
+
+<div class="tabbar">
+  <button id="btnHKD" class="active" onclick="showHKD()">🏪 HKD</button>
+  <button id="btnXD" onclick="showXD()">🏗️ Xây dựng</button>
+</div>
 
 <div id="suggestions" class="suggestions"></div>
 
