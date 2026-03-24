@@ -17,6 +17,19 @@
   <h2 id="title">📋 Tra cứu HKD</h2>
 </header>
 
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button id="btnHKD" class="active" onclick="showHKD()">
+    <div>🏪</div>
+    <small>Hộ kinh doanh</small>
+  </button>
+
+  <button id="btnXD" onclick="showXD()">
+    <div>🏗️</div>
+    <small>Giấy phép Xây dựng</small>
+  </button>
+</div>
+  
 <!-- SEARCH -->
 <div class="search-box">
   <input type="text" id="search" placeholder="🔍 Nhập tên, địa chỉ, mã...">
@@ -27,19 +40,6 @@
 
 <!-- CONTENT -->
 <div id="list" class="content"></div>
-
-<!-- BOTTOM NAV -->
-<div class="bottom-nav">
-  <button id="btnHKD" class="active" onclick="showHKD()">
-    <div>🏪</div>
-    <small>HKD</small>
-  </button>
-
-  <button id="btnXD" onclick="showXD()">
-    <div>🏗️</div>
-    <small>Xây dựng</small>
-  </button>
-</div>
 
 <script src="app.js"></script>
 
