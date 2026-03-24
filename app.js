@@ -1,4 +1,4 @@
-const API = "https://script.google.com/macros/s/AKfycbxDXbAUrpMfe7HQChBu6frXwZgHnDs85Dnx8Cs-qv6-akXoE2Ei3rCrur0XMn8xWsSy4g/exec";
+const API = "https://script.google.com/macros/s/AKfycbxx-TA1xYW-luPWzaM56ERvo6suTrsSUkWviuREr8AVwagroKYbvvLSU2KCBYgDcUJqXw/exec";
 
 let dataHKD = [];
 let dataXD = [];
